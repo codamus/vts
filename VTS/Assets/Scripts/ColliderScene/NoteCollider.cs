@@ -73,6 +73,7 @@ public class NoteCollider : MonoBehaviour
                     space.activateCollider();
                 }else
                 {
+                    space.postNote = note;
                     space.deactivateCollider();
                 }
                 note.order.increaseCounter(space.spaceType);

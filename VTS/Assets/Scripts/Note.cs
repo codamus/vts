@@ -393,13 +393,20 @@ public class Note : MonoBehaviour
 
     public void calculateNoteNumber(int preNoteNumber, int spaceNumber)
     {
-        if (order.isPosOrNeg(correctDirection(preDirection)))
+        if (order.isPosOrNeg(correctDirection("Top")))
         {
             noteNumber = (preNoteNumber + spaceNumber) % 12;
         }
         else
         {
-            noteNumber = (preNoteNumber - spaceNumber) % 12;
+            if(preNoteNumber >= spaceNumber)
+            {
+                noteNumber = preNoteNumber - spaceNumber;
+            }
+            else
+            {
+                noteNumber = 12 + (preNoteNumber - spaceNumber);
+            }
         }
         updateSound();
         updateTextOnNote();

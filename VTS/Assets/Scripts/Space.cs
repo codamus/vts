@@ -51,12 +51,9 @@ public class Space : MonoBehaviour
 
     public void playSound()
     {
-        if (preNote != null)
+        if (preNote != null && postNote != null)
         {
             preNote.playSound();
-        }
-        if (postNote != null)
-        {
             postNote.playSound();
         }
     }

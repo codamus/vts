@@ -21,6 +21,7 @@ public class SpaceOrder : MonoBehaviour
     void Start()
     {
         orderMap = new Dictionary<string, int>();
+        posNegMap = new Dictionary<string, bool>();
         allSideNames = new string[6];
         allSideNames[0] = "Top";
         allSideNames[1] = "TopRight";
@@ -42,9 +43,9 @@ public class SpaceOrder : MonoBehaviour
     {
         if (!orderMap.ContainsKey(name))
         {
-            if (type  == 3)
+            if (type  == 3 && !posNegMap.ContainsKey(name))
             {
-               // generatePosNegMap(name);
+               generatePosNegMap(name);
             }
             orderMap.Add(name, type);
             Debug.Log("Add:" + name + type);
@@ -102,6 +103,7 @@ public class SpaceOrder : MonoBehaviour
         else if(type == 3 && spaceBlueCounter == 0)
         {
             orderMap.Remove(name);
+            posNegMap.Clear();
             Debug.Log("Remove:" + name + type);
         }
     }
