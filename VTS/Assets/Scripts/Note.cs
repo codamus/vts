@@ -229,6 +229,35 @@ public class Note : MonoBehaviour
         }
     }
 
+    public void fixTextRotation()
+    {
+        float rotation = 0;
+        switch (correctDirection("Bottom"))
+        {
+            case "BottomLeft":
+                rotation = 60f;
+                break;
+            case "Left":
+                rotation = 120f;
+                break;
+            case "Top":
+                rotation = 180f;
+                break;
+            case "TopRight":
+                rotation = 240f;
+                break;
+            case "Right":
+                rotation = 300f;
+                break;
+            case "Bottom":
+                rotation = 0f;
+                break;
+        }
+        Vector3 currentRotation = textField.transform.localEulerAngles;
+        currentRotation.z = rotation;
+        textField.transform.localEulerAngles = currentRotation;
+    }
+
     /**
      * Old Code for sockets
     //add one entry in noteOrder Array

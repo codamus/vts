@@ -33,6 +33,7 @@ public class SpaceCollider: MonoBehaviour
             attachObject(other.gameObject);
             space.postNote = note;
             note.calculateNoteNumber(space.preNote.noteNumber, space.spaceNumber);
+            note.fixTextRotation();
             Debug.Log("SelectNote" + name);
         }
     }
