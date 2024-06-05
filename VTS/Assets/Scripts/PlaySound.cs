@@ -24,15 +24,13 @@ public class PlaySound : MonoBehaviour
         if (audioSource.clip != null)
         {
             audioSource.Play();
+            Debug.Log("PlaySound");
         }
     }
 
     public void changeSound(string audioName)
     {
         AudioClip clip = Resources.Load<AudioClip>("Sounds/vts_sounds/" + audioName);
-        if (clip != null)
-        {
-            audioSource.clip = clip;
-        }
+        audioSource.clip = clip;
     }
 }

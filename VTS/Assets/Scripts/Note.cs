@@ -258,6 +258,7 @@ public class Note : MonoBehaviour
         textField.transform.localEulerAngles = currentRotation;
     }
 
+
     /**
      * Old Code for sockets
     //add one entry in noteOrder Array
@@ -462,7 +463,7 @@ public class Note : MonoBehaviour
         
     }
 
-    private void updateSound()
+    public void updateSound()
     {
         soundManager.changeSound(noteNumber.ToString());
     }

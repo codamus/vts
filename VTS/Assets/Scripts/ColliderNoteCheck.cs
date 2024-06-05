@@ -39,6 +39,7 @@ public class ColliderNoteCheck : MonoBehaviour
         {
             isNote = false;
             this.note = null;
+            manageMiddleSphere.check();
         }
     }
 }

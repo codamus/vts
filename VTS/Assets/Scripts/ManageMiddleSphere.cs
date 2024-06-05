@@ -29,6 +29,11 @@ public class ManageMiddleSphere : MonoBehaviour
             GetComponent<Collider>().enabled = true;
             GetComponent<MeshRenderer>().enabled = true;
         }
+        else
+        {
+            GetComponent<Collider>().enabled = false;
+            GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 
     public void playSound()

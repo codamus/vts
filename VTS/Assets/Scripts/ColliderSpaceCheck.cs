@@ -27,6 +27,7 @@ public class ColliderSpaceCheck : MonoBehaviour
         if (space != null)
         {
             isSpace = true;
+            this.space = space;
             manageMiddleSphere.check();
         }
     }
@@ -38,6 +39,7 @@ public class ColliderSpaceCheck : MonoBehaviour
         if(space != null && this.space.Equals(space))
         {
             isSpace = false;
+            manageMiddleSphere.check();
         }
     }
 }

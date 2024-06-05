@@ -50,7 +50,12 @@ public class SpaceCollider: MonoBehaviour
             {
                 GetComponent<SphereCollider>().center = new Vector3(0, 0, 0);
             }
-            note.preDirection = "Top";         
+            note.preDirection = "Top";
+            note.preShiftAmount = 0;
+            space.postNote = null;
+            note.noteNumber = -1;
+            note.updateSound();
+            note.fixTextRotation();
             Debug.Log("DeselectNote" + name);
         }
     }
