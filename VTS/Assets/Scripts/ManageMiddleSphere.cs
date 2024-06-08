@@ -2,44 +2,89 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(MeshRenderer))]
 public class ManageMiddleSphere : MonoBehaviour
 {
-    public ColliderSpaceCheck Collider1;
-    public ColliderSpaceCheck Collider2;
-    public ColliderSpaceCheck Collider3;
-    public ColliderNoteCheck Collider4;
-    public ColliderNoteCheck Collider5;
-    public ColliderNoteCheck Collider6;
+    //collider for detection wether a space or note is at the right position
+    //chord Top: order clockwise with start at this space: space -> noteLeft -> spaceLeft -> note -> spaceRight -> noteRight -> space
+    //chord Bottom: order clockwise with start at this space: space -> noteRight -> spaceRight -> note -> spaceLeft -> noteLeft -> space
+    public ColliderSpaceCheck spaceCollider;
+    public ColliderSpaceCheck spaceColliderRight;
+    public ColliderSpaceCheck spaceColliderLeft;
+    public ColliderNoteCheck noteCollider;
+    public ColliderNoteCheck noteColliderRight;
+    public ColliderNoteCheck noteColliderLeft;
 
-    // Start is called before the first frame update
-    void Start()
+    //materials for shere Color major=dur, minor=moll
+    public Material majorMaterial;
+    public Material minorMaterial;
+
+    //object for showing a sphere
+    private MeshRenderer meshRenderer;
+    //collider for hover
+    private SphereCollider sphereCollider;
+
+    public void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
+        sphereCollider = GetComponent<SphereCollider>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //check if the triangle is completed if yes activate sphere in the middle of the triangle and change the color
+    //called everytime one of the space and note Collider collides with a suitable object
     public void check()
     {
-        if (Collider1.isSpace == true &&  Collider2.isSpace == true && Collider3.isSpace == true && Collider4.isNote == true && Collider5.isNote == true && Collider6.isNote == true)
+        if (spaceCollider.isSpace == true &&  spaceColliderRight.isSpace == true && spaceColliderLeft.isSpace == true && noteCollider.isNote == true && noteColliderRight.isNote == true && noteColliderLeft.isNote == true)
         {
-            GetComponent<Collider>().enabled = true;
-            GetComponent<MeshRenderer>().enabled = true;
+            updateMaterial();
+            sphereCollider.enabled = true;
+            meshRenderer.enabled = true;
+
         }
         else
         {
-            GetComponent<Collider>().enabled = false;
-            GetComponent<MeshRenderer>().enabled = false;
+            sphereCollider.enabled = false;
+            meshRenderer.enabled = false;
         }
     }
 
+    //play all three note sounds of the triangle
+    //called when hover in sphere
     public void playSound()
     {
-        Collider4.note.playSound();
-        Collider5.note.playSound();
-        Collider6.note.playSound();
+        noteCollider.note.playSound();
+        noteColliderRight.note.playSound();
+        noteColliderLeft.note.playSound();
+    }
+
+    //update material to vanilla if chord is major and to dark purple if chord is minor
+    private void updateMaterial()
+    {
+        Space leftSpace = spaceColliderLeft.space;
+        Space rightSpace = spaceColliderRight.space;
+        if(spaceColliderLeft.space.spaceType == 3)
+        {
+            if((noteColliderLeft.note.noteNumber+7) % 12 == noteCollider.note.noteNumber)
+            {
+                meshRenderer.material = minorMaterial;
+            }
+            else
+            {
+                meshRenderer.material = majorMaterial;
+            }
+
+        }
+        else if (spaceColliderRight.space.spaceType == 3)
+        {
+            if((noteColliderRight.note.noteNumber + 7) % 12 == noteCollider.note.noteNumber)
+            {
+                meshRenderer.material = minorMaterial;
+            }
+            else
+            {
+                meshRenderer.material = majorMaterial;
+            }
+        }
     }
 }

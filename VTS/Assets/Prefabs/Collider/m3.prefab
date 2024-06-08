@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6448487787859889391}
   - component: {fileID: 7673605493010553280}
   m_Layer: 0
-  m_Name: Sphere (3)
+  m_Name: noteLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 541872468555987033}
   - component: {fileID: 7669661551754716176}
   m_Layer: 0
-  m_Name: Sphere (4)
+  m_Name: note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4780241489892338015}
   - component: {fileID: 3004182028943696436}
   m_Layer: 0
-  m_Name: Sphere (2)
+  m_Name: spaceRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 2048243067990549827}
   - component: {fileID: 2963326139842507}
   m_Layer: 0
-  m_Name: Sphere (5)
+  m_Name: spaceLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 600479521671985533}
   - component: {fileID: 6109545250321574361}
   m_Layer: 0
-  m_Name: Sphere (4)
+  m_Name: note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 4097151065372450301}
   - component: {fileID: 216805996935879815}
   m_Layer: 0
-  m_Name: Sphere (3)
+  m_Name: noteLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 5398082085420363327}
   - component: {fileID: 5597029321830568813}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: chordBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,12 +540,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc441c685af0b44983f04d81b28199c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collider1: {fileID: 5595517938176668397}
-  Collider2: {fileID: 1734954864490032371}
-  Collider3: {fileID: 2963326139842507}
-  Collider4: {fileID: 8325783422040032864}
-  Collider5: {fileID: 216805996935879815}
-  Collider6: {fileID: 7669661551754716176}
+  spaceCollider: {fileID: 5595517938176668397}
+  spaceColliderRight: {fileID: 1734954864490032371}
+  spaceColliderLeft: {fileID: 2963326139842507}
+  noteCollider: {fileID: 7669661551754716176}
+  noteColliderRight: {fileID: 8325783422040032864}
+  noteColliderLeft: {fileID: 216805996935879815}
+  majorMaterial: {fileID: 0}
+  minorMaterial: {fileID: 0}
 --- !u!114 &5398082085420363327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +771,7 @@ GameObject:
   - component: {fileID: 4315169803414192962}
   - component: {fileID: 6239720184473448962}
   m_Layer: 0
-  m_Name: Sphere (5)
+  m_Name: spaceLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +840,7 @@ GameObject:
   - component: {fileID: 7373061721031121344}
   - component: {fileID: 5595517938176668397}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +940,7 @@ GameObject:
   - component: {fileID: 5333628324435102195}
   - component: {fileID: 1734954864490032371}
   m_Layer: 0
-  m_Name: Sphere (2)
+  m_Name: spaceRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1011,7 +1013,7 @@ GameObject:
   - component: {fileID: 5951558047542164518}
   - component: {fileID: 2827159093449414898}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: chordTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1121,12 +1123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc441c685af0b44983f04d81b28199c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collider1: {fileID: 4425147200901876533}
-  Collider2: {fileID: 3004182028943696436}
-  Collider3: {fileID: 6239720184473448962}
-  Collider4: {fileID: 7066629212140948279}
-  Collider5: {fileID: 7673605493010553280}
-  Collider6: {fileID: 6109545250321574361}
+  spaceCollider: {fileID: 4425147200901876533}
+  spaceColliderRight: {fileID: 3004182028943696436}
+  spaceColliderLeft: {fileID: 6239720184473448962}
+  noteCollider: {fileID: 6109545250321574361}
+  noteColliderRight: {fileID: 7066629212140948279}
+  noteColliderLeft: {fileID: 7673605493010553280}
+  majorMaterial: {fileID: 0}
+  minorMaterial: {fileID: 0}
 --- !u!114 &5951558047542164518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,7 +1285,7 @@ GameObject:
   - component: {fileID: 2178801638099307991}
   - component: {fileID: 7066629212140948279}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: noteRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,7 +1354,7 @@ GameObject:
   - component: {fileID: 8698608978606032745}
   - component: {fileID: 8325783422040032864}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: noteRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1424,7 +1428,7 @@ GameObject:
   - component: {fileID: 4426831303752110771}
   - component: {fileID: 4050575601485029373}
   m_Layer: 0
-  m_Name: SpaceOne 1
+  m_Name: m3
   m_TagString: spaceThree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1730,7 +1734,7 @@ GameObject:
   - component: {fileID: 5820820814800818717}
   - component: {fileID: 4425147200901876533}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

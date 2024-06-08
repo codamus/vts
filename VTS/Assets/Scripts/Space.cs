@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Space : MonoBehaviour
 {
     public int spaceNumber;
-    //1 = green, 2 = orange, 3 = blue, 0 = noType
+    //1 = green = m3, 2 = orange = M3, 3 = blue = P5, 0 = noType
     public int spaceType;
     //direction this space is attached
     public string direction;
@@ -14,7 +14,7 @@ public class Space : MonoBehaviour
     public Note preNote;
     public Note postNote;
 
-
+    private XRSocketInteractor interactor;
     private GameObject right;
 
     // Start is called before the first frame update
@@ -22,31 +22,26 @@ public class Space : MonoBehaviour
     {
         //ERROR if no child gameobject with right names
         right = transform.Find("Right").gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        interactor = right.GetComponent<XRSocketInteractor>();
     }
 
     public void activateSocket()
     {
-        right.GetComponent<XRSocketInteractor>().socketActive = true;
+       interactor.socketActive = true;
     }
     public void deactivateSocket()
     {
-        right.GetComponent<XRSocketInteractor>().socketActive = false;
+        interactor.socketActive = false;
     }
 
     public void activateCollider()
     {
-        right.GetComponent<SphereCollider>().enabled = true;
+        interactor.enabled = true;
     }
 
     public void deactivateCollider()
     {
-        right.GetComponent<SphereCollider>().enabled = false;
+        interactor.enabled = false;
     }
 
     public void playSound()

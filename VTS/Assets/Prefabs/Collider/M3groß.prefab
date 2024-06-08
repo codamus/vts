@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7275317328542793208}
   - component: {fileID: 6083490196899930164}
-  - component: {fileID: 2060267938998285622}
+  - component: {fileID: 9018458829289737388}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -51,11 +51,11 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2060267938998285622
+--- !u!114 &9018458829289737388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed458e38ce3c1174c8d56a562a8e5f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  space: {fileID: 1500328750574633582}
+  attach: {fileID: 2027064847957985402}
 --- !u!1 &6057521485600737033
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,10 +114,10 @@ GameObject:
   - component: {fileID: 3347961826739723813}
   - component: {fileID: 5463257305158789767}
   - component: {fileID: 1500328750574633582}
-  - component: {fileID: 5278561750223029727}
-  - component: {fileID: 6678664479380498272}
+  - component: {fileID: 2473951229941091394}
+  - component: {fileID: 2231006617105033048}
   m_Layer: 0
-  m_Name: SpaceTwo
+  m_Name: "M3gro\xDF"
   m_TagString: spaceOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,10 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8cedae24f74dd408298141e1a47038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceNumber: 4
   spaceType: 2
   direction: 
   preNote: {fileID: 0}
---- !u!114 &5278561750223029727
+  postNote: {fileID: 0}
+--- !u!114 &2473951229941091394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489278061770156057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43724da03dcf1d43b2cf9a0a521972d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrabbed: 0
+  updateParentOnRelease: 1
+--- !u!114 &2231006617105033048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -290,7 +308,19 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1500328750574633582}
+        m_TargetAssemblyTypeName: Space, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -303,7 +333,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6678664479380498272}
+      - m_Target: {fileID: 2473951229941091394}
         m_TargetAssemblyTypeName: Grabbing, Assembly-CSharp
         m_MethodName: simpleGrab
         m_Mode: 1
@@ -318,7 +348,7 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6678664479380498272}
+      - m_Target: {fileID: 2473951229941091394}
         m_TargetAssemblyTypeName: Grabbing, Assembly-CSharp
         m_MethodName: ReleaseSimpleGrab
         m_Mode: 1
@@ -378,16 +408,3 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6678664479380498272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6489278061770156057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a43724da03dcf1d43b2cf9a0a521972d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGrabbed: 0

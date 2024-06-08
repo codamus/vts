@@ -1,16 +1,8 @@
-using Microsoft.MixedReality.OpenXR;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using static NoteSocketManager;
 
 public class Note : MonoBehaviour
 {
-    //public bool isFirst;
-
     public SpaceOrder order;
 
     public Material materialSpaceOne;
@@ -39,9 +31,6 @@ public class Note : MonoBehaviour
     private bool hasSpaceOrange;  
     private bool hasSpaceBlue;
 
-    //position: 0=top, 1=topRight, 2=right, 3=bottom, 4=leftBottom, 5=left
-    //type: 1=spaceOne (green), 2=spaceTwo (orange), 3=spaceThree (blue)
-    private int[] typeOrder;
 
     // Start is called before the first frame update
     void Start()
@@ -54,15 +43,9 @@ public class Note : MonoBehaviour
         topRight = transform.Find("TopRight").gameObject;
         bottomLeft = transform.Find("BottomLeft").gameObject;
         order = GameObject.FindWithTag("SpaceOrder").GetComponent<SpaceOrder>();
-        typeOrder = new int[6];
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void setHasSpaceGreen(bool hasSpaceGreen)
     {
@@ -80,26 +63,6 @@ public class Note : MonoBehaviour
     
     public bool getHasSpaceGreen() {  return this.hasSpaceGreen; }
     public bool getHasSpaceBlue() {  return this.hasSpaceBlue; }
-
-    //add socket information to bottom socket because on attach an note to a space bottom is always attached
-    public void addFirstTypeSocket(int type)
-    {
-        NoteSocketManager bottomManager = bottom.GetComponent<NoteSocketManager>();
-        bottomManager.setSocketSpaceType(type);
-        bottomManager.updateMaterial();
-        bottomManager.oppositeSide.setSocketSpaceType(type);
-        bottomManager.oppositeSide.updateMaterial();
-    }
-
-    //remove socket information from first socket
-    public void removeFirstTypeSocket()
-    {
-        NoteSocketManager bottomManager = bottom.GetComponent<NoteSocketManager>();
-        bottomManager.setSocketSpaceType(0);
-        bottomManager.updateMaterial();
-        bottomManager.oppositeSide.setSocketSpaceType(0);
-        bottomManager.oppositeSide.updateMaterial();
-    }
 
     public void addFirstTypeCollider(int type)
     {
@@ -137,26 +100,6 @@ public class Note : MonoBehaviour
         bottomLeft.GetComponent<Collider>().enabled = false;
     }
 
-    //activate all sockets beside bottom 
-    public void activateSockets()
-    {
-        top.GetComponent<XRSocketInteractor>().socketActive = true;
-        left.GetComponent<XRSocketInteractor>().socketActive = true;
-        right.GetComponent<XRSocketInteractor>().socketActive = true;
-        topRight.GetComponent<XRSocketInteractor>().socketActive = true;
-        bottomLeft.GetComponent<XRSocketInteractor>().socketActive = true;
-    }
-
-    //Deactivate all sockets
-    public void deactivateSockets()
-    {
-        top.GetComponent<XRSocketInteractor>().socketActive = false;
-        bottom.GetComponent<XRSocketInteractor>().socketActive = false;
-        left.GetComponent<XRSocketInteractor>().socketActive = false;
-        right.GetComponent<XRSocketInteractor>().socketActive = false;
-        topRight.GetComponent<XRSocketInteractor>().socketActive = false;
-        bottomLeft.GetComponent<XRSocketInteractor>().socketActive = false;
-    }
 
     //new Code for Colliders
     public void addNoteOrder(string direction, int type)
@@ -258,98 +201,6 @@ public class Note : MonoBehaviour
         textField.transform.localEulerAngles = currentRotation;
     }
 
-
-    /**
-     * Old Code for sockets
-    //add one entry in noteOrder Array
-    public void addNoteOrder(string direction, int type)
-    {
-        int position = getOrderPositionFromDirection(direction);
-        if (typeOrder[position] == 0 && isFirst)
-        {
-            typeOrder[position] = type;
-        }
-    }
-
-    //remove one noteOrder Array entry
-    public void removeNoteOrder(string direction)
-    {
-        if(isFirst)
-        {
-            typeOrder[getOrderPositionFromDirection(direction)] = 0;
-        }
-    }
-
-    public void clearNoteOrder()
-    {
-        typeOrder = new int[6];
-    }
-
-    //true if the type is in given direction
-    public bool isRightPlace(string direction, int type)
-    {
-        return typeOrder[getOrderPositionFromDirection(direction)] == type;
-    }
-
-    //create new typeOrder from past typeOrder with the right shift amount get by direction
-    public void generateOrderFromPastNote(Note note, string direction) 
-    {
-        int shiftAmount = 0;
-        switch (direction)
-        {
-            case "Left":
-                shiftAmount = 5;
-                break;
-            case "BottomLeft":
-                shiftAmount = 4;
-                break;
-            case "Bottom":
-                shiftAmount = 3;
-                break;
-            case "Right":
-                shiftAmount = 2;
-                break;
-            case "TopRight":
-                shiftAmount = 1;
-                break;
-
-                
-        }
-        pastePreTypeOrderInTypeOrder(note.typeOrder, shiftAmount);
-    }
-
-    //shift preTypeOrder Array in current typeOrder Array
-    private void pastePreTypeOrderInTypeOrder(int[] preTypeOrder, int shiftAmount)
-    {
-        for(int i = 0; i< preTypeOrder.Length; i++)
-        {
-            typeOrder[i] = preTypeOrder[(i+shiftAmount) % 6];
-        }
-    }
-
-    //convert direction string into direction int for typeOrder Array
-    private int getOrderPositionFromDirection(string direction)
-    {
-        switch(direction)
-        {
-            case "Top":
-                return 0;
-            case "TopRight": 
-                return 1;
-            case "Right":
-                return 2;
-            case "Bottom":
-                return 3;
-            case "BottomLeft":
-                return 4;
-            case "Left":
-                return 5;
-            default:
-                Debug.LogError("Wrong direction");
-                return 0;
-        }
-    }
-    */
     //change the material from this socket circle
     public void updateMaterial(Renderer renderer, int socketSpaceType)
     {

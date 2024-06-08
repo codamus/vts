@@ -1,20 +1,10 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class SpaceCollider: MonoBehaviour
 {
     public Space space;
     public Transform attach;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,8 +43,7 @@ public class SpaceCollider: MonoBehaviour
             note.preDirection = "Top";
             note.preShiftAmount = 0;
             space.postNote = null;
-            note.noteNumber = -1;
-            note.updateSound();
+            note.resetNoteNumber();
             note.fixTextRotation();
             Debug.Log("DeselectNote" + name);
         }

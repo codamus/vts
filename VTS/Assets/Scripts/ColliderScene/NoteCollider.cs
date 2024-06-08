@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
 using UnityEngine;
 
 public class NoteCollider : MonoBehaviour
@@ -18,12 +15,6 @@ public class NoteCollider : MonoBehaviour
         grabbingObject = GameObject.FindWithTag("Player").GetComponent<CurrentGrabbingObject>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
     public void updateMaterial()
     {
         note.updateMaterial(GetComponent<Renderer>(), colliderSpaceType);
@@ -36,20 +27,7 @@ public class NoteCollider : MonoBehaviour
             Space space = other.gameObject.GetComponent<Space>();
             if (space != null)
             {
-                /*
-                if (note.isFirst)
-                {
-                    
-                    if (note.hasNoteType(space.spaceType) && space.spaceType != colliderSpaceType)
-                    {
-                           return;
-                    }else if(!note.hasNoteType(space.spaceType) && space.spaceType != colliderSpaceType && colliderSpaceType != 0)
-                    {
-                        return;
-                    }
-                }
-                else 
-                */if (!note.isRightPlace(name, space.spaceType))
+                if (!note.isRightPlace(name, space.spaceType))
                 {
                     return;
                 }

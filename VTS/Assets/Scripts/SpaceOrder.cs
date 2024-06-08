@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpaceOrder : MonoBehaviour
 {
-
+    //key: direction, value: space type 
     private Dictionary<string, int> orderMap;
 
     //bool false = minus, bool true = plus
@@ -31,12 +31,6 @@ public class SpaceOrder : MonoBehaviour
         allSideNames[5] = "Left";
 
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void addTypeToOrder(string name, int type)
