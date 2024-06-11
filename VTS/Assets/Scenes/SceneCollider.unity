@@ -2752,7 +2752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859214177}
   m_Layer: 0
-  m_Name: Parent
+  m_Name: Notes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,7 +3147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 952489807}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3796,7 +3797,6 @@ MonoBehaviour:
   prefabSpaceOne: {fileID: 8235832081410534562, guid: c3f4fe2d8525f544abddf26fbc301e0e, type: 3}
   prefabSpaceTwo: {fileID: 6489278061770156057, guid: 034cdf5d1fd4f6242b27de63a9ff1599, type: 3}
   prefabSpaceThree: {fileID: 6831302582008933007, guid: 5d009b311130d8146baff99bd4617d00, type: 3}
-  prefabFirstNote: {fileID: 3962836042988670964, guid: ef4740c08cf0b8848b154db53246b84d, type: 3}
   parent: {fileID: 859214176}
 --- !u!1 &1477392355
 GameObject:
@@ -4543,6 +4543,14 @@ PrefabInstance:
     - target: {fileID: 4626282602310947438, guid: ef4740c08cf0b8848b154db53246b84d, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366867035785021046, guid: ef4740c08cf0b8848b154db53246b84d, type: 3}
+      propertyPath: m_fontSize
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366867035785021046, guid: ef4740c08cf0b8848b154db53246b84d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2487794277775527672, guid: ef4740c08cf0b8848b154db53246b84d, type: 3}

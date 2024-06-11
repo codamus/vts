@@ -27,13 +27,13 @@ public class NoteCollider : MonoBehaviour
             Space space = other.gameObject.GetComponent<Space>();
             if (space != null)
             {
-                if (!note.isRightPlace(name, space.spaceType))
+                if (!note.isRightPlace(name, space.intervalType))
                 {
                     return;
                 }
                 if (colliderSpaceType == 0)
                 {
-                    colliderSpaceType = space.spaceType;
+                    colliderSpaceType = space.intervalType;
                     oppositeCollider.colliderSpaceType = this.colliderSpaceType;
                     oppositeCollider.updateMaterial();
                     updateMaterial();
@@ -42,7 +42,7 @@ public class NoteCollider : MonoBehaviour
                     note.addNoteOrder(oppositeCollider.name, colliderSpaceType);
                     
                 }
-                updateColliderHeight(space.spaceType, (CapsuleCollider)other);
+                updateColliderHeight(space.intervalType, (CapsuleCollider)other);
                 if (space.preNote == null)
                 {
                     attachObject(other.gameObject);
@@ -54,7 +54,7 @@ public class NoteCollider : MonoBehaviour
                     space.postNote = note;
                     space.deactivateCollider();
                 }
-                note.order.increaseCounter(space.spaceType);
+                note.order.increaseCounter(space.intervalType);
                 hasSelection = true;
                 //Debug.Log("Increase Counter" + space.spaceType);
                 Debug.Log("SelectSpace" + name);
@@ -79,10 +79,10 @@ public class NoteCollider : MonoBehaviour
             
             if (!oppositeCollider.hasSelection)
             {
-                note.order.decreaseCounter(space.spaceType);
+                note.order.decreaseCounter(space.intervalType);
                 note.removeNoteOrder(name, colliderSpaceType);
                 note.removeNoteOrder(oppositeCollider.name, oppositeCollider.colliderSpaceType);
-                note.removeType(space.spaceType);
+                note.removeType(space.intervalType);
                 colliderSpaceType = 0;
                 updateMaterial();
                 oppositeCollider.colliderSpaceType = 0;

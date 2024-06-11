@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class SpaceCollider: MonoBehaviour
 {
-    public Space space;
+    public Space interval;
     public Transform attach;
 
     private void OnTriggerEnter(Collider other)
@@ -11,18 +11,22 @@ public class SpaceCollider: MonoBehaviour
         Note note = other.gameObject.GetComponent<Note>();
         if (note != null)
         {
-            note.addFirstTypeCollider(space.spaceType);
+            if(note.noteNumber != -1) 
+            {
+                return;
+            }
+            note.addFirstTypeCollider(interval.intervalType);
             //note.generateOrderFromPastNote(space.preNote, space.direction);
             note.activateColliders();
-            if (space.spaceType < 3)
+            if (interval.intervalType < 3)
             {
                 GetComponent<SphereCollider>().center = new Vector3(1.1f, 0, 0);
             }
-            note.preDirection = space.direction;
-            note.preShiftAmount = space.preNote.generateShiftAmountFormDirection(space.preNote.preDirection);
+            note.preDirection = interval.direction;
+            note.preShiftAmount = interval.preNote.generateShiftAmountFormDirection(interval.preNote.preDirection);
             attachObject(other.gameObject);
-            space.postNote = note;
-            note.calculateNoteNumber(space.preNote.noteNumber, space.spaceNumber);
+            interval.postNote = note;
+            note.calculateNoteNumber(interval.preNote.noteNumber, interval.intervalNumber);
             note.fixTextRotation();
             Debug.Log("SelectNote" + name);
         }
@@ -36,13 +40,13 @@ public class SpaceCollider: MonoBehaviour
             note.removeFirstTypeCollider();
             //note.clearNoteOrder();
             note.deactivateColliders();
-            if (space.spaceType < 3)
+            if (interval.intervalType < 3)
             {
                 GetComponent<SphereCollider>().center = new Vector3(0, 0, 0);
             }
             note.preDirection = "Top";
             note.preShiftAmount = 0;
-            space.postNote = null;
+            interval.postNote = null;
             note.resetNoteNumber();
             note.fixTextRotation();
             Debug.Log("DeselectNote" + name);

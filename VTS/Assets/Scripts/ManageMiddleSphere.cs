@@ -9,7 +9,6 @@ public class ManageMiddleSphere : MonoBehaviour
     //collider for detection wether a space or note is at the right position
     //chord Top: order clockwise with start at this space: space -> noteLeft -> spaceLeft -> note -> spaceRight -> noteRight -> space
     //chord Bottom: order clockwise with start at this space: space -> noteRight -> spaceRight -> note -> spaceLeft -> noteLeft -> space
-    public ColliderSpaceCheck spaceCollider;
     public ColliderSpaceCheck spaceColliderRight;
     public ColliderSpaceCheck spaceColliderLeft;
     public ColliderNoteCheck noteCollider;
@@ -35,7 +34,7 @@ public class ManageMiddleSphere : MonoBehaviour
     //called everytime one of the space and note Collider collides with a suitable object
     public void check()
     {
-        if (spaceCollider.isSpace == true &&  spaceColliderRight.isSpace == true && spaceColliderLeft.isSpace == true && noteCollider.isNote == true && noteColliderRight.isNote == true && noteColliderLeft.isNote == true)
+        if (spaceColliderRight.isSpace == true && spaceColliderLeft.isSpace == true && noteCollider.isNote == true && noteColliderRight.isNote == true && noteColliderLeft.isNote == true)
         {
             updateMaterial();
             sphereCollider.enabled = true;
@@ -63,7 +62,7 @@ public class ManageMiddleSphere : MonoBehaviour
     {
         Space leftSpace = spaceColliderLeft.space;
         Space rightSpace = spaceColliderRight.space;
-        if(spaceColliderLeft.space.spaceType == 3)
+        if(spaceColliderLeft.space.intervalType == 3)
         {
             if((noteColliderLeft.note.noteNumber+7) % 12 == noteCollider.note.noteNumber)
             {
@@ -75,7 +74,7 @@ public class ManageMiddleSphere : MonoBehaviour
             }
 
         }
-        else if (spaceColliderRight.space.spaceType == 3)
+        else if (spaceColliderRight.space.intervalType == 3)
         {
             if((noteColliderRight.note.noteNumber + 7) % 12 == noteCollider.note.noteNumber)
             {
