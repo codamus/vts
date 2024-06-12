@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 526213788200647168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.89, y: 3.23, z: 0}
+  m_LocalPosition: {x: -1.89, y: 3.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 1624918676309030302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99, y: -1.84, z: 0}
+  m_LocalPosition: {x: 0.99, y: -1.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manageMiddleSphere: {fileID: 4785301242314338291}
-  isSpace: 0
-  space: {fileID: 0}
+  isInterval: 0
+  interval: {fileID: 0}
 --- !u!1 &2059482364456728247
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manageMiddleSphere: {fileID: 6051817703228581966}
-  isSpace: 0
-  space: {fileID: 0}
+  isInterval: 0
+  interval: {fileID: 0}
 --- !u!1 &2387853827941785240
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 2387853827941785240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.85, y: -0.05, z: 0}
+  m_LocalPosition: {x: 3.85, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed458e38ce3c1174c8d56a562a8e5f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  space: {fileID: 7598611683910508783}
+  interval: {fileID: 1624048948218798630}
   attach: {fileID: 5767439673468847624}
 --- !u!1 &3659040445278596754
 GameObject:
@@ -784,7 +784,7 @@ Transform:
   m_GameObject: {fileID: 3659040445278596754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 1.76, z: 0}
+  m_LocalPosition: {x: 0.97, y: 1.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -824,8 +824,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manageMiddleSphere: {fileID: 4785301242314338291}
-  isSpace: 0
-  space: {fileID: 0}
+  isInterval: 0
+  interval: {fileID: 0}
 --- !u!1 &5629791400841104060
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ Transform:
   m_GameObject: {fileID: 5629791400841104060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1, y: -0.5, z: 0}
+  m_LocalPosition: {x: 4.307, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -924,8 +924,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manageMiddleSphere: {fileID: 6051817703228581966}
-  isSpace: 0
-  space: {fileID: 0}
+  isInterval: 0
+  interval: {fileID: 0}
 --- !u!1 &6623859006282734376
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ Transform:
   m_GameObject: {fileID: 6623859006282734376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.56, y: 0.3, z: 0}
+  m_LocalPosition: {x: 2.56, y: 0.02, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1227,7 +1227,7 @@ Transform:
   m_GameObject: {fileID: 6995591201751385319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6, y: -3.58, z: 0}
+  m_LocalPosition: {x: -1.6, y: -3.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1351,10 +1351,9 @@ GameObject:
   - component: {fileID: 281434268105978268}
   - component: {fileID: 7615727734531087653}
   - component: {fileID: 8060868924137189666}
-  - component: {fileID: 7598611683910508783}
   - component: {fileID: 4426831303752110771}
   - component: {fileID: 4050575601485029373}
-  - component: {fileID: 7165453395244226596}
+  - component: {fileID: 1624048948218798630}
   m_Layer: 0
   m_Name: m3
   m_TagString: spaceThree
@@ -1371,7 +1370,7 @@ Transform:
   m_GameObject: {fileID: 8235832081410534562}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.787, y: 0.902, z: -0.208}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.06, z: 0.04}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1480,23 +1479,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7598611683910508783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8235832081410534562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d8cedae24f74dd408298141e1a47038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spaceNumber: 3
-  spaceType: 1
-  direction: 
-  preNote: {fileID: 0}
-  postNote: {fileID: 0}
 --- !u!114 &4426831303752110771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1519,7 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7598611683910508783}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Space, Assembly-CSharp
         m_MethodName: playSound
         m_Mode: 1
@@ -1650,24 +1632,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrabbed: 0
   updateParentOnRelease: 1
---- !u!135 &7165453395244226596
-SphereCollider:
+--- !u!114 &1624048948218798630
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8235832081410534562}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d1259b4789f1645863b1cd7c738859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalType: 0
+  direction: 
+  preNote: {fileID: 0}
+  postNote: {fileID: 0}

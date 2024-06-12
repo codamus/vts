@@ -9,8 +9,8 @@ public class ManageMiddleSphere : MonoBehaviour
     //collider for detection wether a space or note is at the right position
     //chord Top: order clockwise with start at this space: space -> noteLeft -> spaceLeft -> note -> spaceRight -> noteRight -> space
     //chord Bottom: order clockwise with start at this space: space -> noteRight -> spaceRight -> note -> spaceLeft -> noteLeft -> space
-    public ColliderSpaceCheck spaceColliderRight;
-    public ColliderSpaceCheck spaceColliderLeft;
+    public ColliderIntervalCheck spaceColliderRight;
+    public ColliderIntervalCheck spaceColliderLeft;
     public ColliderNoteCheck noteCollider;
     public ColliderNoteCheck noteColliderRight;
     public ColliderNoteCheck noteColliderLeft;
@@ -34,7 +34,7 @@ public class ManageMiddleSphere : MonoBehaviour
     //called everytime one of the space and note Collider collides with a suitable object
     public void check()
     {
-        if (spaceColliderRight.isSpace == true && spaceColliderLeft.isSpace == true && noteCollider.isNote == true && noteColliderRight.isNote == true && noteColliderLeft.isNote == true)
+        if (spaceColliderRight.isInterval == true && spaceColliderLeft.isInterval == true && noteCollider.isNote == true && noteColliderRight.isNote == true && noteColliderLeft.isNote == true)
         {
             updateMaterial();
             sphereCollider.enabled = true;
@@ -60,9 +60,9 @@ public class ManageMiddleSphere : MonoBehaviour
     //update material to vanilla if chord is major and to dark purple if chord is minor
     private void updateMaterial()
     {
-        Space leftSpace = spaceColliderLeft.space;
-        Space rightSpace = spaceColliderRight.space;
-        if(spaceColliderLeft.space.intervalType == 3)
+        Interval leftSpace = spaceColliderLeft.interval;
+        Interval rightSpace = spaceColliderRight.interval;
+        if(spaceColliderLeft.interval.intervalType == IntervalType.P5)
         {
             if((noteColliderLeft.note.noteNumber+7) % 12 == noteCollider.note.noteNumber)
             {
@@ -74,7 +74,7 @@ public class ManageMiddleSphere : MonoBehaviour
             }
 
         }
-        else if (spaceColliderRight.space.intervalType == 3)
+        else if (spaceColliderRight.interval.intervalType == IntervalType.P5)
         {
             if((noteColliderRight.note.noteNumber + 7) % 12 == noteCollider.note.noteNumber)
             {

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed458e38ce3c1174c8d56a562a8e5f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  space: {fileID: 1500328750574633582}
+  interval: {fileID: 1419750290020666938}
   attach: {fileID: 2027064847957985402}
 --- !u!1 &6057521485600737033
 GameObject:
@@ -113,11 +113,11 @@ GameObject:
   - component: {fileID: 556222809980481639}
   - component: {fileID: 3347961826739723813}
   - component: {fileID: 5463257305158789767}
-  - component: {fileID: 1500328750574633582}
   - component: {fileID: 2473951229941091394}
   - component: {fileID: 2231006617105033048}
+  - component: {fileID: 1419750290020666938}
   m_Layer: 0
-  m_Name: "M3gro\xDF"
+  m_Name: M3Big
   m_TagString: spaceOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,23 +239,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1500328750574633582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6489278061770156057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d8cedae24f74dd408298141e1a47038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spaceNumber: 4
-  spaceType: 2
-  direction: 
-  preNote: {fileID: 0}
-  postNote: {fileID: 0}
 --- !u!114 &2473951229941091394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +292,7 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1500328750574633582}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Space, Assembly-CSharp
         m_MethodName: playSound
         m_Mode: 1
@@ -408,3 +391,19 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1419750290020666938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489278061770156057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d1259b4789f1645863b1cd7c738859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalType: 1
+  direction: 
+  preNote: {fileID: 0}
+  postNote: {fileID: 0}

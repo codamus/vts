@@ -18,10 +18,13 @@ public class PlaySound : MonoBehaviour
         if (audioSource.clip != null)
         {
             audioSource.Play();
-            Debug.Log("PlaySound");
+
+            //for debugging
+            //Debug.Log("PlaySound");
         }
     }
 
+    //change the audioclip by load the sound with the given name out of the folder vts_sounds 
     public void changeSound(string audioName)
     {
         AudioClip clip = Resources.Load<AudioClip>("Sounds/vts_sounds/" + audioName);

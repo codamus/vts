@@ -8,7 +8,7 @@ TagManager:
   - spaceOne
   - spaceThree
   - spaceTwo
-  - SpaceOrder
+  - IntervalOrder
   layers:
   - Default
   - TransparentFX

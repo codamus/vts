@@ -1,24 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceOrder : MonoBehaviour
+public class IntervalOrder : MonoBehaviour
 {
     //key: direction, value: space type 
-    private Dictionary<string, int> orderMap;
+    private Dictionary<string, IntervalType> orderMap;
 
     //bool false = minus, bool true = plus
     private Dictionary<string, bool> posNegMap;
 
+    //array with all six side names
     private string[] allSideNames;
 
-    private int spaceGreenCounter;
-    private int spaceOrangeCounter;
-    private int spaceBlueCounter;
+    //counter of each interval for only remove order if the last interval is removed
+    private int m3Counter;
+    private int M3Counter;
+    private int P5Counter;
 
     // Start is called before the first frame update
     void Start()
     {
-        orderMap = new Dictionary<string, int>();
+        orderMap = new Dictionary<string, IntervalType>();
         posNegMap = new Dictionary<string, bool>();
         allSideNames = new string[6];
         allSideNames[0] = "Top";
@@ -31,20 +33,28 @@ public class SpaceOrder : MonoBehaviour
 
     }
 
-    public void addTypeToOrder(string name, int type)
+    //add the givin type the the orderMap if this type is not already in the map
+    //if added type is P5 the PosNegMap for the number calculation is generated
+    public void addTypeToOrder(string name, IntervalType type)
     {
         if (!orderMap.ContainsKey(name))
         {
-            if (type  == 3 && !posNegMap.ContainsKey(name))
+            if (type  == IntervalType.P5 && !posNegMap.ContainsKey(name))
             {
                generatePosNegMap(name);
             }
             orderMap.Add(name, type);
-            Debug.Log("Add:" + name + type);
+
+            //for debugging
+            //Debug.Log("Add:" + name + type);
         }
     }
+
+    //fill the PosNegMap with position and the right bool
     private void generatePosNegMap(string name) 
     {
+        //name is the direction the interval P5 is attached
+        //shift to the first minus position
         int shift = 0;
         switch(name)
         {
@@ -67,6 +77,9 @@ public class SpaceOrder : MonoBehaviour
                 shift = 7;
                 break;
         }
+
+        //add the position and bool to the PosNegMap
+        //go around clockwise beginning two positions away from the P5 attach
         for(int i = 0; i < allSideNames.Length; i++)
         {
             if (i < 3) 
@@ -80,27 +93,28 @@ public class SpaceOrder : MonoBehaviour
         }
     }
 
-    public void removeTypeInOrder(string name, int type)
+    //remove type in orderMap only if the last interval of a type is removed
+    //if its P5 also clear the PosNegMap
+    public void removeTypeInOrder(string name, IntervalType type)
     {
-        if (type == 1 && spaceGreenCounter == 0)
+        if (type == IntervalType.m3 && m3Counter == 0)
         {
             orderMap.Remove(name);
-            Debug.Log("Remove:" + name + type);
         }
-        else if (type == 2 && spaceOrangeCounter == 0) 
+        else if (type == IntervalType.M3Big && M3Counter == 0) 
         { 
             orderMap.Remove(name);
-            Debug.Log("Remove:" + name + type);
         }
-        else if(type == 3 && spaceBlueCounter == 0)
+        else if(type == IntervalType.P5 && P5Counter == 0)
         {
             orderMap.Remove(name);
             posNegMap.Clear();
-            Debug.Log("Remove:" + name + type);
         }
     }
 
-    public bool isRightPlace(string name, int type)
+    //check if the interval is attached in the right direction
+    //only works with the corrected direction
+    public bool isRightPlace(string name, IntervalType type)
     {
         if(orderMap.ContainsValue(type) && !orderMap.ContainsKey(name))
         {
@@ -124,34 +138,36 @@ public class SpaceOrder : MonoBehaviour
         return posNegMap[name];
     }
 
-    public void increaseCounter(int type)
+    //increase the givin typeCounter by 1
+    public void increaseCounter(IntervalType type)
     {
         switch(type)
         {
-            case 1:
-                spaceGreenCounter++;
+            case IntervalType.m3:
+                m3Counter++;
                 break;
-            case 2:
-                spaceOrangeCounter++;
+            case IntervalType.M3Big:
+                M3Counter++;
                 break;
-            case 3:
-                spaceBlueCounter++;
+            case IntervalType.P5:
+                P5Counter++;
                 break;
         }
     }
 
-    public void decreaseCounter(int type)
+    //decrease the givin typeCounter by 1
+    public void decreaseCounter(IntervalType type)
     {
         switch (type)
         {
-            case 1:
-                spaceGreenCounter--;
+            case IntervalType.m3:
+                m3Counter--;
                 break;
-            case 2:
-                spaceOrangeCounter--;
+            case IntervalType.M3Big:
+                M3Counter--;
                 break;
-            case 3:
-                spaceBlueCounter--;
+            case IntervalType.P5:
+                P5Counter--;
                 break;
         }
     }

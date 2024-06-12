@@ -3,34 +3,36 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    public SpaceOrder order;
+    //order the intervals has to placed
+    public IntervalOrder order;
 
-    public Material materialSpaceOne;
-    public Material materialSpaceTwo;
-    public Material materialSpaceThree;
+    //material of the different intervals
+    public Material materialIntervalm3;
+    public Material materialIntervalM3;
+    public Material materialIntervalP5;
     public Material materialDefault;
 
+    //soundmanager for playing sounds
     public PlaySound soundManager;
 
+    //default "Top"
     public string preDirection = "Top";
 
     public int preShiftAmount;
 
+    //default -1
     public int noteNumber;
 
+    //text field on the note
     public TMP_Text textField;
 
+    //all colliders around the note to attach intervals
     private GameObject top;
     private GameObject bottom;
     private GameObject right;
     private GameObject left;
     private GameObject topRight;
     private GameObject bottomLeft;
-
-    private bool hasSpaceGreen;  
-    private bool hasSpaceOrange;  
-    private bool hasSpaceBlue;
-
 
     // Start is called before the first frame update
     void Start()
@@ -42,29 +44,16 @@ public class Note : MonoBehaviour
         left = transform.Find("Left").gameObject;
         topRight = transform.Find("TopRight").gameObject;
         bottomLeft = transform.Find("BottomLeft").gameObject;
-        order = GameObject.FindWithTag("SpaceOrder").GetComponent<SpaceOrder>();
+
+        //Gameobject with an IntervalOrder script attached and need the tag IntervalOrder
+        order = GameObject.FindWithTag("IntervalOrder").GetComponent<IntervalOrder>();
 
     }
 
-
-    public void setHasSpaceGreen(bool hasSpaceGreen)
-    {
-        this.hasSpaceGreen = hasSpaceGreen;
-    }
-    public void setHasSpaceOrange(bool hasSpaceOrange)
-    {
-        this.hasSpaceOrange = hasSpaceOrange;
-    }
-    public void setHasSpaceBlue(bool hasSpaceBlue) 
-    {  
-        this.hasSpaceBlue = hasSpaceBlue;
-    }
-    public bool getHasSpaceOrange() {  return this.hasSpaceOrange; }
-    
-    public bool getHasSpaceGreen() {  return this.hasSpaceGreen; }
-    public bool getHasSpaceBlue() {  return this.hasSpaceBlue; }
-
-    public void addFirstTypeCollider(int type)
+    //add the givin type to the bottom collider and update the material
+    //also for opposite
+    //all notes attach with bottom to the interval
+    public void addTypeToFirstCollider(IntervalType type)
     {
         NoteCollider bottomCollider = bottom.GetComponent<NoteCollider>();
         bottomCollider.SetColliderType(type);
@@ -73,15 +62,18 @@ public class Note : MonoBehaviour
         bottomCollider.oppositeCollider.updateMaterial();
     }
 
-    public void removeFirstTypeCollider()
+    //remove the type and update material from the bottom collider
+    //also for opposite
+    public void removeTypeFromFirstCollider()
     {
         NoteCollider bottomCollider = bottom.GetComponent<NoteCollider>();
-        bottomCollider.SetColliderType(0);
-        bottomCollider.oppositeCollider.SetColliderType(0);
+        bottomCollider.SetColliderType(IntervalType.noType);
+        bottomCollider.oppositeCollider.SetColliderType(IntervalType.noType);
         bottomCollider.updateMaterial();
         bottomCollider.oppositeCollider.updateMaterial();
     }
 
+    //do not activate bottom because bottom is always attached to the first interval
     public void activateColliders()
     {
         top.GetComponent<Collider>().enabled = true;
@@ -91,6 +83,7 @@ public class Note : MonoBehaviour
         bottomLeft.GetComponent<Collider>().enabled = true;
     }
 
+    //do not deactivate bottom because bottom is never activated
     public void deactivateColliders()
     {
         top.GetComponent<Collider>().enabled = false;
@@ -100,22 +93,26 @@ public class Note : MonoBehaviour
         bottomLeft.GetComponent<Collider>().enabled = false;
     }
 
-
-    //new Code for Colliders
-    public void addNoteOrder(string direction, int type)
+    //correct the direction and add the type to the interval order
+    public void addNoteOrder(string direction, IntervalType type)
     {
         order.addTypeToOrder(correctDirection(direction), type);
     }
 
-    public void removeNoteOrder(string direction, int type)
+    //correct the direction and remove the type from the interval order
+    public void removeNoteOrder(string direction, IntervalType type)
     {
         order.removeTypeInOrder(correctDirection(direction), type);
     }
-    public bool isRightPlace(string direction, int type)
+
+    //check if the interval is at the right place
+    public bool isRightPlace(string direction, IntervalType type)
     {
-        Debug.Log(correctDirection(direction));
         return order.isRightPlace(correctDirection(direction), type);
     }
+
+    //correct the direction because the notes may turn around on attachment
+    //for the correct interval map and check of rightplace the direction will correct as the note were with "Top" at the top
     private string correctDirection(string direction)
     {
         string[] directions = new string[6];
@@ -146,6 +143,8 @@ public class Note : MonoBehaviour
 
     }
 
+    //get the number of how often the note is turned around
+    //also work with the shift amount of the last note
     public int generateShiftAmountFormDirection(string direction)
     {
         switch (direction)
@@ -172,6 +171,7 @@ public class Note : MonoBehaviour
         }
     }
 
+    //fix the rotation of the text that it will always display in the same direction on all notes
     public void fixTextRotation()
     {
         float rotation = 0;
@@ -201,94 +201,47 @@ public class Note : MonoBehaviour
         textField.transform.localEulerAngles = currentRotation;
     }
 
-    //change the material from this socket circle
-    public void updateMaterial(Renderer renderer, int socketSpaceType)
+    //change the material from the given render according to the given interval type
+    public void updateMaterial(Renderer renderer, IntervalType type)
     {
-        //Debug.Log("updateMaterial" + name);
-        switch (socketSpaceType)
+        switch (type)
         {
-            case 0:
+            case IntervalType.noType:
                 renderer.material = materialDefault;
                 break;
-            case 1:
-                renderer.material = materialSpaceOne;
+            case IntervalType.m3:
+                renderer.material = materialIntervalm3;
                 break;
-            case 2:
-                renderer.material = materialSpaceTwo;
+            case IntervalType.M3Big:
+                renderer.material = materialIntervalM3;
                 break;
-            case 3:
-                renderer.material = materialSpaceThree;
-                break;
-        }
-    }
-    //Add type 1,2 or 3 to the note
-    public void addType(int type)
-    {
-        switch (type)
-        {
-            case 1:
-                hasSpaceGreen = true;
-                break;
-            case 2:
-                hasSpaceOrange = true;
-                break;
-            case 3:
-                hasSpaceBlue = true;
+            case IntervalType.P5:
+                renderer.material = materialIntervalP5;
                 break;
         }
     }
 
-    //return if the note have at least one of the searched type
-    public bool hasNoteType(int type)
+    public void calculateNoteNumber(int preNoteNumber, int intervalNumber)
     {
-        switch (type)
-        {
-            case 1:
-                return hasSpaceGreen;
-            case 2:
-                return hasSpaceOrange;
-            case 3:
-                return hasSpaceBlue;
-            default:
-                return false;
-        }
-    }
-
-    //remove the type 1,2 or 3 from the note
-    //only remove if no space of this type is attached to the note
-    public void removeType(int type)
-    {
-        switch (type)
-        {
-            case 1:
-                hasSpaceGreen = false;
-                break;
-            case 2:
-                hasSpaceOrange = false;
-                break;
-            case 3:
-                hasSpaceBlue = false;
-                break;
-        }
-    }
-
-    public void calculateNoteNumber(int preNoteNumber, int spaceNumber)
-    {
+        //plus if true
         if (order.isPosOrNeg(correctDirection("Top")))
         {
-            noteNumber = (preNoteNumber + spaceNumber) % 12;
+            noteNumber = (preNoteNumber + intervalNumber) % 12;
         }
         else
         {
-            if(preNoteNumber >= spaceNumber)
+            //positive number
+            if(preNoteNumber >= intervalNumber)
             {
-                noteNumber = preNoteNumber - spaceNumber;
+                noteNumber = preNoteNumber - intervalNumber;
             }
+            //negative number
             else
             {
-                noteNumber = 12 + (preNoteNumber - spaceNumber);
+                noteNumber = 12 + (preNoteNumber - intervalNumber);
             }
         }
+
         updateSound();
         updateTextOnNote();
     }

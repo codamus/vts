@@ -1,15 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
-public class Space : MonoBehaviour
+public class Interval : MonoBehaviour
 {
     //number of the interval: 3 = m3 = green, 4 = M3 = orange, 7 = P5 = blue
-    public int intervalNumber;
-    //1 = green = m3, 2 = orange = M3, 3 = blue = P5, 0 = noType
-    public int intervalType;
-    //direction this space is attached
+    private int intervalNumber;
+    //green = m3, orange = M3, blue = P5
+    public IntervalType intervalType;
+    //direction this interval is attached
     public string direction;
-    //note this space is attached on
+    //note this interval is attached on
     public Note preNote;
     //note attached to this interval
     public Note postNote;
@@ -25,8 +24,30 @@ public class Space : MonoBehaviour
         //ERROR if no child gameobject with right names
         right = transform.Find("Right").gameObject;
         sphereCollider = right.GetComponent<SphereCollider>();
+        addIntervalNumber();
+
     }
 
+    private void addIntervalNumber()
+    {
+        switch(intervalType)
+        {
+            case IntervalType.m3:
+                intervalNumber = 3;
+                break;
+            case IntervalType.M3Big:
+                intervalNumber = 4;
+                break;
+            case IntervalType.P5:
+                intervalNumber = 7; 
+                break;
+        }
+    }
+
+    public int getIntervalNumber()
+    {
+        return intervalNumber;
+    }
     //activate the Sphere Collider of the "Right" Object
     public void activateCollider()
     {
