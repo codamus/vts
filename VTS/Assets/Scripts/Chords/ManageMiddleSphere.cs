@@ -60,8 +60,8 @@ public class ManageMiddleSphere : MonoBehaviour
     //update material to vanilla if chord is major and to dark purple if chord is minor
     private void updateMaterial()
     {
-        Interval leftSpace = spaceColliderLeft.interval;
-        Interval rightSpace = spaceColliderRight.interval;
+        Interval leftInterval = spaceColliderLeft.interval;
+        Interval rightInterval = spaceColliderRight.interval;
         if(spaceColliderLeft.interval.intervalType == IntervalType.P5)
         {
             if((noteColliderLeft.note.noteNumber+7) % 12 == noteCollider.note.noteNumber)

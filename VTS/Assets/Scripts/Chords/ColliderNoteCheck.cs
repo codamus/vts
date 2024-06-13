@@ -9,6 +9,8 @@ public class ColliderNoteCheck : MonoBehaviour
     //note that is in this collider
     public Note note;
 
+    private Coroutine waitCoroutine;
+
     //manage the note the triggers this collider
     private void OnTriggerEnter(Collider other)
     {
@@ -18,8 +20,16 @@ public class ColliderNoteCheck : MonoBehaviour
         {
             isNote = true;
             this.note = note;
+            //wait until the note is attached
+            waitCoroutine = StartCoroutine(WaitUntilNoteAttached());
             manageMiddleSphere.check();
+            
         }
+    }
+
+    private System.Collections.IEnumerator WaitUntilNoteAttached()
+    {
+        yield return new WaitUntil(() => note.noteNumber != -1);
     }
 
     //manage the note that leaves the trigger
@@ -32,6 +42,7 @@ public class ColliderNoteCheck : MonoBehaviour
             isNote = false;
             this.note = null;
             manageMiddleSphere.check();
+            StopCoroutine(waitCoroutine);
         }
     }
 }
