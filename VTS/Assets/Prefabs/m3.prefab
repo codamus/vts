@@ -1519,8 +1519,8 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Space, Assembly-CSharp
+      - m_Target: {fileID: 1624048948218798630}
+        m_TargetAssemblyTypeName: Interval, Assembly-CSharp
         m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
